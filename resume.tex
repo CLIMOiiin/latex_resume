@@ -1,0 +1,166 @@
+% ============================================================
+%  中文简历模板 —— 复刻自 PDF 排版
+%  照片：将 photo.jpg 放置于同目录下即可自动显示
+% ============================================================
+\documentclass[a4paper, 10pt]{article}
+
+% ---------- 宏包 ----------
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+% ---------- 配色参数（可自定义） ----------
+\definecolor{accentColor}{RGB}{0, 55, 125}  % 浙江大学蓝
+
+% ---------- 页面设置 ----------
+\geometry{top=0.8cm, bottom=0.8cm, left=1.0cm, right=1.0cm}
+
+% ---------- 字体（English 优先 Calibri） ----------
+\IfFontExistsTF{Calibri}{
+  \setmainfont{Calibri}
+  \setsansfont{Calibri}
+}{
+  \IfFontExistsTF{SF Pro Text}{
+    \setmainfont{SF Pro Text}
+    \setsansfont{SF Pro Text}
+  }{
+    \setmainfont{Helvetica Neue}
+    \setsansfont{Helvetica Neue}
+  }
+}
+\IfFontExistsTF{PingFang SC}{
+  \setCJKmainfont{PingFang SC}
+  \setCJKsansfont{PingFang SC}
+}{
+  \setCJKmainfont{Heiti SC}
+  \setCJKsansfont{Heiti SC}
+}
+
+% ---------- 行间距 ----------
+\linespread{1.2}
+
+% ---------- 段落 ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+
+% ---------- 节标题：加粗 + 蓝色字体 + 蓝色分割线 ----------
+\titleformat{\section}[block]
+  {\large\bfseries\color{accentColor}}{}
+  {0em}{}
+  [\vspace{0pt}\color{accentColor}\hrule height 1pt]
+\titlespacing*{\section}{0pt}{4pt}{6pt}
+
+% ---------- 列表样式 ----------
+\setlist[itemize]{
+  label=\raisebox{0.05ex}{\large$\bullet$},
+  leftmargin=0.5cm,
+  labelindent=0pt,
+  itemindent=0em,
+  labelsep=-0.5em,
+  align=left,
+  topsep=0pt,
+  itemsep=0pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+% ---------- 条目命令 ----------
+% \cventry{标题}{日期}{副信息}{地点}
+\newcommand{\cventry}[4]{%
+  \vspace{1pt}%
+  \noindent\textbf{#1}\hfill{#2}\\[1pt]%
+  \noindent{#3}\hfill{#4}%
+  \vspace{1pt}%
+}
+
+% \eduentry{左列学校}{中列专业学位}{右列时间}{右列地点（可选）}
+\newcommand{\eduentry}[4]{%
+  \vspace{1pt}%
+  \noindent
+  \begin{minipage}[t]{0.20\linewidth}
+    \raggedright\textbf{#1}
+  \end{minipage}%
+  \begin{minipage}[t]{0.60\linewidth}
+    \centering\textbf{#2}
+  \end{minipage}%
+  \begin{minipage}[t]{0.20\linewidth}
+    \raggedleft #3\if\relax\detokenize{#4}\relax\else\quad #4\fi
+  \end{minipage}%
+  \vspace{0pt}%
+}
+
+% \workentry{左列公司}{中列岗位}{右列时间}{右列地点（可选）}
+\newcommand{\workentry}[4]{%
+  \vspace{1pt}%
+  \noindent
+  \begin{minipage}[t]{0.40\linewidth}
+    \raggedright\textbf{#1}
+  \end{minipage}%
+  \begin{minipage}[t]{0.20\linewidth}
+    \centering\textbf{#2}
+  \end{minipage}%
+  \begin{minipage}[t]{0.40\linewidth}
+    \raggedleft #3\if\relax\detokenize{#4}\relax\else\quad #4\fi
+  \end{minipage}%
+  \vspace{0pt}%
+}
+
+% ============================================================
+\begin{document}
+\pagestyle{empty}
+\vspace*{-\topskip}
+
+%% ==================== 页眉 ====================
+% 先正常排一个右上照片块并占据页眉高度，再回退同样高度叠放全宽信息块。
+\newlength{\logowidth}
+\setlength{\logowidth}{0.14\linewidth}
+\newlength{\logoheight}
+\setlength{\logoheight}{1.1cm}
+\newlength{\photowidth}
+\setlength{\photowidth}{0.115\linewidth}
+\newlength{\photoheight}
+\setlength{\photoheight}{2.55cm}
+\noindent
+\makebox[0pt][l]{%
+  \begin{minipage}[t][\photoheight][t]{\logowidth}%
+    \vspace{0pt}%
+    \raggedright
+    \IfFileExists{logo.png}{%
+      \includegraphics[height=\logoheight, keepaspectratio=true]{logo.png}%
+    }{}
+  \end{minipage}%
+}
+\makebox[\linewidth][r]{%
+  \begin{minipage}[t][\photoheight][t]{\photowidth}%
+    \vspace{0pt}%
+    \raggedleft
+    \IfFileExists{photo.jpg}{%
+      \begin{tikzpicture}
+        \clip (0,0) rectangle (\photowidth,\photoheight);
+        \node[inner sep=0, anchor=north] at (0.5\photowidth,\photoheight) {%
+          \includegraphics[width=\photowidth, height=1.1\photoheight, keepaspectratio=true]{photo.jpg}%
+        };
+      \end{tikzpicture}%
+    }{%
+      \setlength{\fboxsep}{0pt}%
+      \fbox{\rule{\dimexpr\photowidth-2\fboxrule\relax}{0pt}\rule{0pt}{\photoheight}}%
+    }%
+  \end{minipage}%
+}\par
+\vspace*{-\photoheight}
+\noindent
+\begin{minipage}[t][\photoheight][t]{\linewidth}%
+  \vspace{0pt}%
+  \centering
+  \input{content_header.tex}
+\end{minipage}
+
+\vspace{-0.7cm}
+\input{content_body.tex}
+
+\end{document}

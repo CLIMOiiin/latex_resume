@@ -1,11 +1,11 @@
 #!/bin/zsh
 set -euo pipefail
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 
 INPUT_FILE="content.md"
-HEADER_OUT="content_header.tex"
-BODY_OUT="content_body.tex"
+HEADER_OUT="build/content_header.tex"
+BODY_OUT="build/content_body.tex"
 
 if [[ ! -f "$INPUT_FILE" ]]; then
   echo "Missing $INPUT_FILE"

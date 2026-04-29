@@ -2,8 +2,8 @@
   "latex-workshop.latex.tools": [
     {
       "name": "sync-md",
-      "command": "./sync_resume.sh",
-      "args": []
+      "command": "perl",
+      "args": ["scripts/sync_resume.pl"]
     },
     {
       "name": "xelatex",
@@ -63,6 +63,7 @@
     "*.fdb_latexmk", "*.synctex.gz", "*.xdv"
   ],
   "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.latex.outDir": "./build",
   "[latex]": {
     "editor.formatOnSave": false,
     "editor.wordWrap": "on"

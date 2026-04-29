@@ -25,5 +25,8 @@
 # Optional: ignore generated PDF by default
 *.pdf
 
+# Build output directory
+build/
+
 # macOS
 .DS_Store

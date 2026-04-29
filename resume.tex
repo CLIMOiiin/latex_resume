@@ -1,6 +1,6 @@
 % ============================================================
 %  中文简历模板 —— 复刻自 PDF 排版
-%  照片：将 photo.jpg 放置于同目录下即可自动显示
+%  照片：将 photo.jpg 放置于项目根目录下即可自动显示
 % ============================================================
 \documentclass[a4paper, 10pt]{article}
 
@@ -170,10 +170,10 @@
 \begin{minipage}[t][\photoheight][t]{\linewidth}%
   \vspace{0pt}%
   \centering
-  \input{content_header.tex}
+  \input{build/content_header.tex}
 \end{minipage}
 
 \vspace{-0.7cm}
-\input{content_body.tex}
+\input{build/content_body.tex}
 
 \end{document}

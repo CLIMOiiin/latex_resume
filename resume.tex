@@ -20,25 +20,38 @@
 % ---------- 页面设置 ----------
 \geometry{top=0.8cm, bottom=0.8cm, left=1.0cm, right=1.0cm}
 
-% ---------- 字体（English 优先 Calibri） ----------
-\IfFontExistsTF{Calibri}{
-  \setmainfont{Calibri}
-  \setsansfont{Calibri}
-}{
-  \IfFontExistsTF{SF Pro Text}{
-    \setmainfont{SF Pro Text}
-    \setsansfont{SF Pro Text}
-  }{
-    \setmainfont{Helvetica Neue}
-    \setsansfont{Helvetica Neue}
-  }
+% ---------- 字体（优先可商用开源字体） ----------
+\defaultfontfeatures{Ligatures=TeX}
+
+% 优先使用仓库内可商用字体文件，确保打包后可直接编译。
+\IfFileExists{fonts/Carlito-Regular.ttf}{
+  \setmainfont[
+    Path=fonts/,
+    UprightFont=Carlito-Regular.ttf,
+    BoldFont=Carlito-Bold.ttf,
+    ItalicFont=Carlito-Italic.ttf,
+    BoldItalicFont=Carlito-BoldItalic.ttf
+  ]{Carlito}
+  \setsansfont[
+    Path=fonts/,
+    UprightFont=Carlito-Regular.ttf,
+    BoldFont=Carlito-Bold.ttf,
+    ItalicFont=Carlito-Italic.ttf,
+    BoldItalicFont=Carlito-BoldItalic.ttf
+  ]{Carlito}
 }
-\IfFontExistsTF{PingFang SC}{
-  \setCJKmainfont{PingFang SC}
-  \setCJKsansfont{PingFang SC}
-}{
-  \setCJKmainfont{Heiti SC}
-  \setCJKsansfont{Heiti SC}
+
+\IfFileExists{fonts/NotoSansCJKsc-Regular.otf}{
+  \setCJKmainfont[
+    Path=fonts/,
+    UprightFont=NotoSansCJKsc-Regular.otf,
+    BoldFont=NotoSansCJKsc-Bold.otf
+  ]{Noto Sans CJK SC}
+  \setCJKsansfont[
+    Path=fonts/,
+    UprightFont=NotoSansCJKsc-Regular.otf,
+    BoldFont=NotoSansCJKsc-Bold.otf
+  ]{Noto Sans CJK SC}
 }
 
 % ---------- 行间距 ----------

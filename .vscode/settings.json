@@ -1,17 +1,13 @@
 {
   "latex-workshop.latex.tools": [
     {
-      "name": "sync-md",
-      "command": "perl",
-      "args": ["scripts/sync_resume.pl"]
-    },
-    {
       "name": "xelatex",
       "command": "xelatex",
       "args": [
         "-synctex=1",
         "-interaction=nonstopmode",
         "-file-line-error",
+        "-output-directory=%OUTDIR%",
         "%DOC%"
       ]
     },
@@ -22,6 +18,7 @@
         "-synctex=1",
         "-interaction=nonstopmode",
         "-file-line-error",
+        "-output-directory=%OUTDIR%",
         "%DOC%"
       ]
     },
@@ -32,10 +29,6 @@
     }
   ],
   "latex-workshop.latex.recipes": [
-    {
-      "name": "Sync Markdown -> XeLaTeX",
-      "tools": ["sync-md", "xelatex"]
-    },
     {
       "name": "XeLaTeX",
       "tools": ["xelatex"]
@@ -53,7 +46,7 @@
       "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
     }
   ],
-  "latex-workshop.latex.recipe.default": "Sync Markdown -> XeLaTeX",
+  "latex-workshop.latex.recipe.default": "XeLaTeX",
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.latex.autoBuild.run": "onSave",
   "latex-workshop.latex.clean.fileTypes": [

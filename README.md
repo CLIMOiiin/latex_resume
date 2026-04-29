@@ -1,8 +1,8 @@
 # LaTeX Resume Template
 
-这是一个纯 TeX 的中文简历模板。
+一个基于 LaTeX 的中文简历模板项目。
 
-不再使用 Markdown 转换流程，直接编辑以下 3 个主文件后编译：
+直接编辑以下 3 个主文件后编译即可生成格式化的简历PDF：
 
 - `resume.tex`（主入口，版式与样式）
 - `content_header.tex`（页眉内容）
@@ -45,7 +45,9 @@ xelatex --version
 
 打开 `resume.tex` 后，使用 LaTeX Workshop Build（默认 recipe: XeLaTeX），点击右上角绿色编译运行按钮，打开侧边预览即可实时预览。
 
-编译输出位于 `build/`：
+![alt text](./assets/image2.png)
+
+修改content内容后点击绿色运行按钮等待几秒即可完成编译，编译输出位于 `build/`：
 
 - ==`build/resume.pdf`（即最终生成的简历pdf版本）==
 - `build/*.aux`, `build/*.log`, `build/*.synctex.gz` 等中间文件
